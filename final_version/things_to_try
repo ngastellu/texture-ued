@@ -1,0 +1,5 @@
+- Label peaks that are intense in exptl and absent in textured and try to find a pattern? Is the ideal pattern better?
+
+- Fit phi distribution to bimodal mixture of two normal distributions
+
+- Examine residuals when testing background removal
