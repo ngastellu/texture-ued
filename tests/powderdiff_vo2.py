@@ -7,9 +7,8 @@ from iris import PowderDiffractionDataset
 from time import perf_counter
 from scipy.integrate import simps
 
-def powdersim(crystal,q,reflections=None,crystallite_size=None,count_list=1,compute_lorenz=False,return_peak_list=False,**kwargs):
+def powdersim(crystal,q,reflections=None,crystallite_size=None,count_list=1,compute_lorenz=False,**kwargs):
     """Modification of scikit-ued's `powdersim` function that takes sample texture into account.
-       
        Inputs
        ---
        crystal: a scikit-ued `Crystal` object representing the crystal from which to diffract
@@ -22,20 +21,9 @@ def powdersim(crystal,q,reflections=None,crystallite_size=None,count_list=1,comp
        
        count_list: a (M,) NumPy array containing the number of crystallite contributing to each diffraction peak [optional]
        
-       compute_lorenz: a boolean which determines whether or not the Lorenz factor is evaluated for the pattern's diffracion peaks
-
-       return_peak_list: a boolean that determines whether or not to return `peak_list` array [optional]
+       compute_lorenz: a boolean which determines whether or not the Lorenz factor is evaluated for the pattern's diffracion peaks."""
        
-       Output
-       ---
-       pattern: a (N,) NumPy array containing the diffraction pattern
-
-       peak_list: a (M,6) NumPy array containing the following information about each reflection:
-         - postion
-         - Miller indices
-         - intensity
-         - closest point in the `q` array
-       """    
+    
     if np.all(reflections) == None:
         refls = np.vstack(tuple(crystal.bounded_reflections(q.max())))
         h, k, l = np.hsplit(refls, 3)
